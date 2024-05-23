@@ -2,8 +2,13 @@ import {createGlobalStyle} from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
 *{
-    font-family: "Montserrat", sans-serif !important;
-    font-weight: 500;
+    color: ${({theme}) => theme.colors.text200};
+    font-family: "Roboto", sans-serif !important;
+    font-weight: 600;
+    font-size: 16px;
+    @media (max-width: 599px) {
+      font-size: 12px;
+    }
     ::-webkit-scrollbar {
       width: 8px;
       border-radius: 10px;
@@ -26,6 +31,17 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 
+  .desktop{
+    @media (max-width: 599px) {
+      display: none;
+    }
+  }
+
+  .mobile{
+    @media (min-width: 600px) {
+      display: none;
+    }
+  }
   input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 30px ${({theme})=> theme.colors.background} inset;
   }
