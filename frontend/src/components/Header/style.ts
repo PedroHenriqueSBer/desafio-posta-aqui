@@ -29,6 +29,7 @@ export const Container = styled.header`
 `
 
 export const Button = styled.button`
+  color: ${({theme}) => theme.colors.text200};
   transition: 300ms ease-in-out;
   &:hover{
     color: ${({theme}) => theme.colors.secondary};

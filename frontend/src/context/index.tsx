@@ -1,10 +1,13 @@
-import { contextProps } from '../types/props'
+import { IContextProps } from '../types/props'
 import { createTheme, ThemeProvider as MUITheProvider } from "@mui/material";
 import light from "./../styles/themes/light";
 import { ThemeProvider } from "styled-components";
+import { LoadingContextProvider } from './loading';
+import { CalculateContextProvider } from './calculator';
+import { ResultContextProvider } from './results';
 
 
-export const Providers = ({children} : contextProps) => {
+export const Providers = ({children} : IContextProps) => {
   const theme = createTheme({
     palette: {
       primary: {
@@ -27,7 +30,13 @@ export const Providers = ({children} : contextProps) => {
   return (
     <MUITheProvider theme={theme}>
       <ThemeProvider theme={light}>
-        {children}
+        <LoadingContextProvider>
+          <CalculateContextProvider>
+            <ResultContextProvider>
+              {children}
+            </ResultContextProvider>
+          </CalculateContextProvider>
+        </LoadingContextProvider>
       </ThemeProvider>
     </MUITheProvider>
   )

@@ -39,8 +39,8 @@ export const Header = () => {
         <img src="/assets/header_logo.png" alt="" className="desktop" />
         <img src="/assets/logo.png" alt="" className="mobile" />
       </button>
-      {option.map(o => 
-        <Button onClick={()=> navigate(o.route)} className="desktop">{o.name}</Button>
+      {option.map((o, index) => 
+        <Button key={index} onClick={()=> navigate(o.route)} className="desktop">{o.name}</Button>
       )}
       <div className="mobile menuBar">
         <IconButton
@@ -63,8 +63,8 @@ export const Header = () => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        {option.map(o => 
-          <MenuItem onClick={() => {handleClose(); navigate(o.route)}}>{o.name}</MenuItem>
+        {option.map((o,index) => 
+          <MenuItem key={index} onClick={() => {handleClose(); navigate(o.route)}}>{o.name}</MenuItem>
       )}
       </Menu>
     </Container>

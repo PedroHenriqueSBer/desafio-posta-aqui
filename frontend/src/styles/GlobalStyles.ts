@@ -2,7 +2,6 @@ import {createGlobalStyle} from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
 *{
-    color: ${({theme}) => theme.colors.text200};
     font-family: "Roboto", sans-serif !important;
     font-weight: 600;
     font-size: 16px;
@@ -53,6 +52,7 @@ export const GlobalStyle = createGlobalStyle`
   html, body, div#root{
     margin: 0;
     padding: 0;
+    min-height: 100vh;
     overflow-x: hidden;
     background-color: ${({theme}) => theme.colors.background};
   }
