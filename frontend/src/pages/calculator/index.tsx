@@ -23,10 +23,7 @@ export const Calculator = () => {
 
   const shippingCalculate = (input: IShippingCalculateInputModel) => 
     new Promise<IShipmentViewModel[]>((resolve,reject) => api.post('/shipping_calculate',input).then(({data}) => resolve(data)).catch(reject))
-
-  const carrier = (carrier: string,calculated_id: string) => 
-    new Promise<string>((resolve,reject) => api.post(`//posting?carrier={{${carrier}}}`,{calculated_id}).then(({data: {code}}) => resolve(code)).catch(reject))
-
+  
   const handleSubmit = (value: IPackage) => {
     setSelectedPackage(value)
     setIsLoading(true)
@@ -35,11 +32,11 @@ export const Calculator = () => {
       receiver: selectedReceiver,
       package: selectedPackage
     })
-      .then((result) => {
+      .then((shipment) => {
         setResults([{
-          createdAt: new Date(),
+          createdAt: new Date().toString(),
           name: selectedSender.fullname,
-          shipment: result
+          shipment: {shipment}
         }, ...results])
         navigate(`/result/${results.length}`)
       })

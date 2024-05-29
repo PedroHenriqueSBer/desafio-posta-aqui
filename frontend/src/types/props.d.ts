@@ -49,7 +49,14 @@ export interface ICustomSteperContextProps {
   activeStep: number
   setActiveStep: (value: number) => void
 }
-interface LoadingContextProps {
+export interface LoadingContextProps {
   isLoading: boolean,
   setIsLoading: (value: boolean) => void
+}
+
+export interface IPopupProps {
+  isOpen: boolean
+  onClose: () => void
+  title: string
+  description: string
 }

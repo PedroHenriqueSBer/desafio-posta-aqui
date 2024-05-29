@@ -1,4 +1,4 @@
-import { Button, Grid, MenuItem, Select, TextField } from "@mui/material"
+import { Button, Grid, Autocomplete, TextField } from "@mui/material"
 import { Container } from "./style"
 import * as yup from 'yup'
 import { yupResolver } from "@hookform/resolvers/yup"
@@ -9,7 +9,6 @@ import { useForm, Controller } from "react-hook-form"
 import { consultCep } from "../../services/consultCep";
 import { MASK_CEP, MASK_CPF, MASK_PHONE, MASK_PHONE_SIMPLE, MASK_PHONE_SIMPLE_WITH_NINE, MASK_PHONE_WITH_NINE, STATES } from "../../constants";
 import { toPattern } from "vanilla-masker"
-import { useLoading } from "../../context/loading";
 import { useCustomSteper } from "../CustomSteper";
 import { IPersonFormProps } from "../../types/props";
 
@@ -105,10 +104,8 @@ export const PersonForm = ({
   } = watch()
 
   useEffect(()=>{
-    STATES.forEach(s => {
-      if(s.uf === uf)
-        setValue('address.state',s.state)
-    })
+    const newState = STATES.filter(s => s.uf.toLocaleLowerCase() === uf.toLocaleLowerCase())[0]
+    setValue('address.state',newState?.state ?? '')
   },[uf])
 
   useEffect(()=>{
@@ -258,17 +255,20 @@ export const PersonForm = ({
                 control={control}
                 name="address.uf"
                 render={({field}) =>
-                  <Select
+                  <Autocomplete 
                     fullWidth
-                    error={!!errors.address?.uf?.message}
-                    {...field}
-                  >
-                    <MenuItem value={''}>Uf</MenuItem>
-                    {STATES.map(({uf}, index) => 
-                      <MenuItem key={index} value={uf}>{uf}</MenuItem>
-                    )}
-                  </Select>
-                }
+                    options={STATES.map(s => s.uf)}
+                    renderInput={(params) => 
+                      <TextField
+                        label="Uf"
+                        error={!!errors.address?.uf?.message}
+                        helperText={errors.address?.uf?.message}
+                        {...field}
+                        {...params}
+                      />
+                    }
+                  />
+              }
               />
             </Grid>
             <Grid item xs={12} sm={6} md={2}>

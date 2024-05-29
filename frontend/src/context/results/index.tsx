@@ -1,14 +1,13 @@
 import { createContext, useContext } from "react";
 import { IContextProps, IResultContextProps } from "../../types/props";
-import { IResults } from "../../types/models";
+import { IResult } from "../../types/models";
 import { usePersistedState } from "../../hook/usePersistedState";
 
 const ResultContext = createContext({} as IResultContextProps)
 
 export const ResultContextProvider = ({children} : IContextProps) => {
 
-  const [results, setResults] = usePersistedState<IResults[]>('data.results',[])
-
+  const [results, setResults] = usePersistedState<IResult[]>('data.resultss',[])
   
   return (
     <ResultContext.Provider value={{

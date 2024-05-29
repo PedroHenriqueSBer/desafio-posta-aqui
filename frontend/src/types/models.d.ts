@@ -46,8 +46,10 @@ export interface IState {
   state: string
 }
 
-export interface IResults {
+export interface IResult {
   name: string
-  createdAt: Date
-  shipment: import('./viewModels').IShipmentViewModel[]
+  createdAt: string
+  shipment: { 
+    shipment: import('./viewModels').IShipmentViewModel[]
+  }
 }

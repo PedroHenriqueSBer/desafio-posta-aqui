@@ -1,7 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 import {
   Home,
-  Calculator
+  Calculator,
+  Result
 } from './../pages/index'
 
 export const Router = () => {
@@ -10,6 +11,7 @@ export const Router = () => {
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/calculator" element={<Calculator />} />
+        <Route path="/result/:id" element={<Result />} />
         <Route path="/history" element={<div>Histórico</div>} />
       </Routes>
     </BrowserRouter>
