@@ -7,12 +7,11 @@ const CustomSteperContext = createContext({} as ICustomSteperContextProps)
 
 export const CustomSteper = ({
   steps,
-  icons
+  icons,
+  activeStep,
+  setActiveStep
 }:ICustomSteperProps) => {
   const theme = useTheme()
-
-
-  const [activeStep,setActiveStep] = useState(0)
 
   const ColorlibConnector = styled(StepConnector)(() => ({
     [`&.${stepConnectorClasses.alternativeLabel}`]: {

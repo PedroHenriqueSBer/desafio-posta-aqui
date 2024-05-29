@@ -14,6 +14,8 @@ import api from "../../services/api"
 import { useLoading } from "../../context/loading"
 import { useResult } from "../../context/results"
 import { useNavigate } from "react-router-dom"
+import { DEFAULTPACKAGE, DEFAULTPERSON } from "../../constants"
+import { useState } from "react"
 
 export const Calculator = () => {  
   const { selectedSender, setSelectedSender, selectedReceiver, setSelectedReceiver, selectedPackage, setSelectedPackage} = useCalculate()
@@ -21,8 +23,10 @@ export const Calculator = () => {
   const { setResults, results } = useResult()
   const navigate = useNavigate()
 
+  const [activeStep,setActiveStep] = useState<number>(0)
+
   const shippingCalculate = (input: IShippingCalculateInputModel) => 
-    new Promise<IShipmentViewModel[]>((resolve,reject) => api.post('/shipping_calculate',input).then(({data}) => resolve(data)).catch(reject))
+    new Promise<IShipmentViewModel[]>((resolve,reject) => api.post('/shipping_calculate',input).then(({data}) => resolve(data.shipment)).catch(reject))
   
   const handleSubmit = (value: IPackage) => {
     setSelectedPackage(value)
@@ -36,9 +40,13 @@ export const Calculator = () => {
         setResults([{
           createdAt: new Date().toString(),
           name: selectedSender.fullname,
-          shipment: {shipment}
+          shipment: shipment
         }, ...results])
         navigate(`/result/${results.length}`)
+        setSelectedSender(DEFAULTPERSON)
+        setSelectedReceiver(DEFAULTPERSON)
+        setSelectedPackage(DEFAULTPACKAGE)
+        setActiveStep(0)
       })
       .catch(console.log)
       .finally(() => setIsLoading(false))
@@ -51,6 +59,8 @@ export const Calculator = () => {
         <Content>
           <Typography variant="h4" component="p" color="primary">Calculadora de frete</Typography>
           <CustomSteper 
+            activeStep={activeStep}
+            setActiveStep={setActiveStep}
             steps={[
               {
                 label: 'Remetente',

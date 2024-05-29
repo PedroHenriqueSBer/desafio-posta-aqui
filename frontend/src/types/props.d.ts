@@ -24,6 +24,8 @@ export interface ICustomSteperIconsProps{
 export interface ICustomSteperProps {
   steps: IStepOptions[]
   icons: ICustromSteperIconsProps
+  activeStep: number
+  setActiveStep: (value: number) => void
 }
 export interface IResultContextProps {
   results: import('./models').IResults[], 

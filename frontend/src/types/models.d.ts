@@ -49,7 +49,5 @@ export interface IState {
 export interface IResult {
   name: string
   createdAt: string
-  shipment: { 
-    shipment: import('./viewModels').IShipmentViewModel[]
-  }
+  shipment: import('./viewModels').IShipmentViewModel[]
 }

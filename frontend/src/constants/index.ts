@@ -1,4 +1,4 @@
-import { IState } from "../types/models"
+import { IPackage, IPerson, IState } from "../types/models"
 
 const STATES: IState[] = [
   {
@@ -118,6 +118,38 @@ const MASK_PHONE_SIMPLE_WITH_NINE = "99999-9999";
 const MASK_PHONE = "(99) 9999-9999";
 const MASK_PHONE_WITH_NINE = "(99) 99999-9999";
 
+const DEFAULTPACKAGE: IPackage = {
+  ar: false,
+  height: '',
+  information: {
+    amount: '',
+    description: '',
+    quantity: ''
+  },
+  length: '',
+  own_hands: false,
+  reverse: false,
+  weight: '',
+  width: ''
+}
+
+const DEFAULTPERSON: IPerson = {
+  address: {
+    cep: '',
+    city: '',
+    neighborhood: '',
+    number: '',
+    state: '',
+    street: '',
+    uf: ''
+  },
+  cpf: '',
+  email: '',
+  fullname: '',
+  phone: ''
+}
+
+
 export {
   STATES, 
   MASK_CPF, 
@@ -125,5 +157,7 @@ export {
   MASK_PHONE_SIMPLE,
   MASK_PHONE_SIMPLE_WITH_NINE,
   MASK_PHONE,
-  MASK_PHONE_WITH_NINE
+  MASK_PHONE_WITH_NINE,
+  DEFAULTPACKAGE,
+  DEFAULTPERSON
 }

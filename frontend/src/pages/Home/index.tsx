@@ -19,10 +19,8 @@ export const Home = () => {
           <h2>Transportadoras</h2>
           <div>
             <img src="/assets/correios-color.png" alt="" />
-            <img src="/assets/dhl-color.png" alt="" />
-            <img src="/assets/fedex-color.png" alt="" />
             <img src="/assets/jadlog-color.png" alt="" />
-            <img src="/assets/ups-color.png" alt="" />
+            <img src="/assets/azul-cargologo.png" alt="" />
           </div>
         </Content>
       </Container>

@@ -65,7 +65,7 @@ export const Result = () => {
     if(id !== undefined){
       if(results[parseInt(id)] !== undefined){
         setResult(results[parseInt(id)])
-        setLowerPriceIndex(getLowerIndex(results[parseInt(id)].shipment.shipment as IShipmentViewModel[]))
+        setLowerPriceIndex(getLowerIndex(results[parseInt(id)].shipment as IShipmentViewModel[]))
       }
       else
         navigate('/')
@@ -89,7 +89,7 @@ export const Result = () => {
                 <Grid item xs={6} md={4} lg={2}>
                   <Typography variant="h5" component="p" color="primary">{new Date(result.createdAt).toLocaleDateString()}</Typography>
                 </Grid>
-                {result.shipment.shipment.map((s, index) =>
+                {result.shipment.map((s, index) =>
                   <Grid key={index} item xs={12} sm={6} md={4} lg={3}>
                     {lowerPriceIndex === index && 
                       <Category>
