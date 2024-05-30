@@ -8,7 +8,7 @@
 
 1. **Clone o repositório**
     ```cmd
-    git clone https://github.com/usuario/projeto.git
+    git clone https://github.com/PedroHenriqueSBer/desafio-posta-aqui.git
     ```
 
 2. **Navegue até o diretório do projeto React**
